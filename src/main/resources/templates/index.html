@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<head>
+<meta charset="UTF-8">
+<title>Page d'accueil</title>
+<!-- <link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.1.0/css/bootstrap.min.css" /> 
+Nous l'avons déjà déclaré dans la page template.html-->
+</head>
+<body>
+	<div layout:fragment="center">
+		<div class="container mt-3 col-sm-8">
+			<div class="card ">
+				<div class="card-header">Liste des articles</div>
+				<div class="card-body">
+					<table class="table">
+						<tr>
+							<th>Article</th>
+							<th>Prix</th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr th:each="a:${articles}">
+							<td th:text="${a.nom}"></td>
+							<td th:text="${a.prix}"></td>
+							<td><a class="btn btn-default"
+								th:href="@{voirArticle(id=${a.id})}">Détail</a></td>
+							<td><a class="btn btn-default"
+								onclick="return confirm('Voulez-vous vraiment supprimer')"
+								th:href="@{deleteArticle(id=${a.id},page=${pageCourante})}">Supprimer</a></td>
+							<td><a class="btn btn-default"
+								th:href="@{editArticle(id=${a.id})}">Editer</a></td>
+							<td><a class="btn btn-default"
+								th:href="@{AjouterAuPanier(id=${a.id})}">Ajouter au panier</a></td>
+						</tr>
+					</table>
+					<ul class="nav nav-pills">
+						<li th:each="page,status:${pages}"><a
+							th:class="${status.index==pageCourante?'btn btn-primary':'btn'}"
+							th:href="@{articles(page=${status.index})}"
+							th:text="${status.index}"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

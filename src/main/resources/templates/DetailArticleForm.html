@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<head>
+<meta charset="UTF-8">
+<title>Page d'accueil</title>
+<!-- <link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.1.0/css/bootstrap.min.css" /> 
+Nous l'avons déjà déclaré dans la page template.html-->
+</head>
+<body>
+	<div layout:fragment="center">
+		<div class="container mt-3 col-sm-5">
+			<div class="card">
+				<div class="card-header">Détail d'un article</div>
+				<div class="card-body">
+					<form th:action="@{DetailArticle(${article.id})}" method="post">
+					<div class="form-group">
+					<label class="control-label">ID: </label>
+					<label class="control-label" th:text="${article.id}"></label>
+					<input type="hidden" name="id" class="form-control" th:value="${article.id}">
+					</div>
+					<div class="form-group">
+					<label class="control-label">Nom: </label>
+					<label class="control-label" th:text="${article.nom}" ></label>
+					</div>
+					<div class="form-group">
+					<label class="control-label">Description: </label>
+					<label class="control-label" th:text="${article.descArt}" ></label>
+					</div>
+					<div class="form-group">
+					<label class="control-label">Prix: </label>
+					<label class="control-label" th:text="${article.prix}" ></label>
+					</div>
+					<button class="btn btn-primary" name="action" type="submit" value="edit">Editer</button>
+					<button class="btn btn-danger" name="action" type="submit" value="supprimer" onclick = "return confirm('Voulez-vous vraiment supprimer')">Supprimer</button>
+					<a class="btn btn-warning" th:href="@{AjouterAuPanier(id=${article.id})}">Ajouter au panier</a>
+					</form>
+					
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<head>
+<meta charset="UTF-8">
+<title>Panier</title>
+
+</head>
+<body>
+	<div layout:fragment="center">
+		<div class="container mt-3 col-sm-5">
+			<div class="card">
+				<div class="card-header">Panier</div>
+				<div class="card-body">
+				<h6>Nombre total d'articles: <label class="control-label" th:text="${panier.articles.size()}"></label></h6>
+					<table class="table">
+					<tr>
+					<th>Article</th>
+					<th>Prix</th>
+					<th>Description</th>
+					</tr>
+					<tr th:each="a:${panier.articles}">
+							<td th:text="${a.nom}"></td>
+							<td th:text="${a.prix}"></td>
+							<td th:text="${a.descArt}"></td>
+							<td></td>
+						</tr>
+					</table>
+					<a class="btn btn-info"
+								th:href="@{EditerPanier}">Editer panier</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

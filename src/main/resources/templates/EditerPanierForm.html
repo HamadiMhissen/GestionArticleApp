@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<head>
+<meta charset="UTF-8">
+<title>Panier</title>
+
+</head>
+<body>
+	<div layout:fragment="center">
+		<div class="container mt-3 col-sm-5">
+			<div class="card">
+				<div class="card-header">Panier</div>
+				<div class="card-body">
+					<table class="table">
+					<tr>
+					<th>Article</th>
+					<th>Prix</th>
+					<th>Description</th>
+					<th></th>
+					</tr>
+					<tr th:each="a:${panier.articles}">
+							<td th:text="${a.nom}"></td>
+							<td th:text="${a.prix}"></td>
+							<td th:text="${a.descArt}"></td>
+							<td><a class="btn btn-default"
+								th:href="@{deleteFromPanier(id=${a.id})}">Supprimer du panier</a></td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
